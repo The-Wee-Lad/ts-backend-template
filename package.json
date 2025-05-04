@@ -1,0 +1,23 @@
+{
+  "name": "ts-project",
+  "version": "1.0.0",
+  "description": "This is my first ts project",
+  "license": "ISC",
+  "author": "Aditya Narayan",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node src/index.js",
+    "dev": "nodemon --watch --exec 'ts-node' src/index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.5.3",
+    "ts-node": "^10.9.2",
+    "tsc": "^2.0.4",
+    "typescript": "^5.8.3"
+  }
+}
