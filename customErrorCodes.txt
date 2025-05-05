@@ -1,0 +1,12 @@
+| Code       | Description                          |
+| ---------- | ------------------------------------ |
+| `AUTH_001` | Missing authentication token         |
+| `AUTH_002` | Invalid token                        |
+| `AUTH_003` | Expired token                        |
+| `AUTH_004` | Unauthorized access                  |
+| `AUTH_005` | Access denied – insufficient role    |
+| `AUTH_006` | Login failed – incorrect credentials |
+| `AUTH_007` | Account not verified                 |
+| `AUTH_008` | Refresh token invalid or expired     |
+| `AUTH_009` | Session expired                      |
+| `AUTH_010` | Token blacklisted                    |
