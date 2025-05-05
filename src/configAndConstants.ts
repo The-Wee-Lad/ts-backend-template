@@ -15,6 +15,7 @@ interface Config {
   REFRESH_TOKEN_EXPIRES: string;
   PORT: number;
   NODE_ENV: 'development' | 'production' | 'staging';
+  CORS_ORIGIN: string;
 }
 
 // --------------------------------------
@@ -29,6 +30,7 @@ const config: Config = {
   REFRESH_TOKEN_EXPIRES: process.env.REFRESH_TOKEN_EXPIRES!,
   PORT: parseInt(process.env.PORT!, 10) || 3000,
   NODE_ENV: process.env.NODE_ENV! as 'development' | 'production' | 'staging' || 'development',
+  CORS_ORIGIN: process.env.CORS_ORIGIN!,
 }
 
 

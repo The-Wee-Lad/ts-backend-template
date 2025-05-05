@@ -13,3 +13,27 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id           String   @id @default(uuid())
+  name         String   @db.VarChar(255)
+  email        String   @unique @db.VarChar(255)
+  password     String   @db.VarChar(511)
+  refreshToken String   @db.VarChar(511)
+  createdAt    DateTime @default(now()) @db.Timestamp(6)
+  updatedAt    DateTime @updatedAt @db.Timestamp(6)
+}
+
+model Gadgets {
+  id     String @id @default(uuid())
+  name   String @db.VarChar(511)
+  status STATUS @default(Available)
+}
+
+// ENUMS should be in Upercase but assign. specified otherwise.
+enum STATUS {
+  Available
+  Deployed
+  Destroyed
+  Decommissioned
+}
