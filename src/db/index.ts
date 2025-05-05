@@ -1,9 +1,9 @@
 import { PrismaClient } from '../../generated/prisma/index';
-const dbClient = new PrismaClient();
+const prismaClient = new PrismaClient();
 
 const connectToDb = async () => {
   try {
-    await dbClient.$connect();
+    await prismaClient.$connect();
     console.log('Connected to DB Succesfully ');
   } catch (error) {
     console.log('Connection Failed ', error);
@@ -11,4 +11,4 @@ const connectToDb = async () => {
   }
 };
 
-export { connectToDb };
+export { connectToDb, prismaClient };
