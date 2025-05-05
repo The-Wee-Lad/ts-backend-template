@@ -3,11 +3,18 @@ class ApiResponse {
   message: string;
   customErrorCode?: number;
   success: boolean;
-  constructor(statusCode: number, message: string, customErrorCode?: number) {
+  data: any;
+  constructor(
+    statusCode: number,
+    message: string,
+    data: any,
+    customErrorCode?: number
+  ) {
     this.statusCode = statusCode;
     this.message = message;
     this.success = statusCode < 400;
     this.customErrorCode = customErrorCode;
+    this.data = data;
   }
 }
 
