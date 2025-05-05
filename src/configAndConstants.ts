@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
+import cors, { CorsOptions } from 'cors';
 dotenv.config({
-  path: './.env'
+  path: './.env',
 });
-
 
 // --------------------------------------
 // Configuration Types
@@ -15,7 +15,6 @@ interface Config {
   REFRESH_TOKEN_EXPIRES: string;
   PORT: number;
   NODE_ENV: 'development' | 'production' | 'staging';
-  CORS_ORIGIN: string;
 }
 
 // --------------------------------------
@@ -29,10 +28,10 @@ const config: Config = {
   ACCESS_TOKEN_EXPIRES: process.env.ACCESS_TOKEN_EXPIRES!,
   REFRESH_TOKEN_EXPIRES: process.env.REFRESH_TOKEN_EXPIRES!,
   PORT: parseInt(process.env.PORT!, 10) || 3000,
-  NODE_ENV: process.env.NODE_ENV! as 'development' | 'production' | 'staging' || 'development',
-  CORS_ORIGIN: process.env.CORS_ORIGIN!,
-}
-
+  NODE_ENV:
+    (process.env.NODE_ENV! as 'development' | 'production' | 'staging') ||
+    'development',
+};
 
 // --------------------------------------
 // Constants
@@ -40,7 +39,23 @@ const config: Config = {
 const cookieOptions = {
   secure: config.NODE_ENV === 'production',
   httpOnly: true,
-}
+};
+const whitelist: string[] = [
+  `http://localhost:${config.PORT}`,
+  `https://mehSomeFrontend.com`,
+];
 
+const isDev = config.NODE_ENV == 'development';
 
-export { cookieOptions, config };
+const corsOptions: CorsOptions = {
+  origin: function (origin: string | undefined, callback) {
+    if ((isDev && !origin) || whitelist.indexOf(origin || '') !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS ERROR :: ORIGIN NOT ALLOWED'));
+    }
+  },
+  credentials: true,
+};
+
+export { cookieOptions, config, corsOptions };
