@@ -16,13 +16,15 @@
     "@types/node": "^22.15.3",
     "nodemon": "^3.1.10",
     "prettier": "^3.5.3",
+    "prisma": "^6.7.0",
     "ts-node": "^10.9.2",
     "tsc": "^2.0.4",
+    "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@prisma/client": "^6.7.0",
     "dotenv": "^16.5.0",
-    "express": "^5.1.0",
-    "prisma": "^6.7.0"
+    "express": "^5.1.0"
   }
 }
