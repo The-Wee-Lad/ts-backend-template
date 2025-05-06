@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
-import { ApiError, ApiResponse } from '../utils/index';
+import { ApiError, ApiResponse } from '../utils/index.js';
 
 const globalErrorHandler = async (
   error: any,

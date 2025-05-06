@@ -1,6 +1,6 @@
-import { connectToDb } from './db/index';
-import { app } from './app';
-import { config } from './configAndConstants';
+import { connectToDb } from './db/index.js';
+import { app } from './app.js';
+import { config } from './configAndConstants.js';
 
 connectToDb().then((resolve) => {
   app.listen(config.PORT, () => {

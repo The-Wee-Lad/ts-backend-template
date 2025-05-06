@@ -9,8 +9,8 @@ import {
   decommissionGadget,
   selfDestructSequence,
   requestSelfDestructSequence
-} from '../controllers/gadget.controller'
-import { verifyToken } from '../middlewares/auth.middleware';
+} from '../controllers/gadget.controller.js'
+import { verifyToken } from '../middlewares/auth.middleware.js';
 
 
 router.use(verifyToken);

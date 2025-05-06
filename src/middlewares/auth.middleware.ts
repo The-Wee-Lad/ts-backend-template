@@ -1,8 +1,8 @@
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { asyncHandler, ApiError, ApiResponse } from '../utils/index';
+import { asyncHandler, ApiError, ApiResponse } from '../utils/index.js';
 import { Request, Response, NextFunction } from 'express';
-import { prismaClient } from '../db/index';
-import { config } from '../configAndConstants';
+import { prismaClient } from '../db/index.js';
+import { config } from '../configAndConstants.js';
 
 const verifyToken = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {

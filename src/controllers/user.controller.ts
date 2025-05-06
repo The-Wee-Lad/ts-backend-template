@@ -5,16 +5,16 @@ import {
   generateTokens,
   hashPassword,
   comparePassword
-} from '../utils/index';
+} from '../utils/index.js';
 
-import { prismaClient } from '../db';
+import { prismaClient } from '../db/index.js';
 import { Request, Response, NextFunction } from 'express';
 import {
   RequestRegister,
   RequestLogin,
   RequestDelete,
 } from '../../types/index';
-import { cookieOptions } from '../configAndConstants';
+import { cookieOptions } from '../configAndConstants.js';
 
 const register = asyncHandler(async (req: Request, res: Response) => {
   const { name, username, email, password } = req.body as RequestRegister;

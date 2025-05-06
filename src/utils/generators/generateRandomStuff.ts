@@ -1,4 +1,4 @@
-import { firstName, secondName } from '../../configAndConstants';
+import { firstName, secondName } from '../../configAndConstants.js';
 import { randomInt } from 'node:crypto';
 
 const generateName = (): string => {

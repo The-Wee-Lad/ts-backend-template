@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
-import { User } from '../../../generated/prisma';
-import { config } from '../../configAndConstants';
+import { User } from '@prisma/client';
+import { config } from '../../configAndConstants.js';
 import ms from 'ms';
 
 const generateTokens = async (user: User) => {

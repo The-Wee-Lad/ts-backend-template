@@ -1,8 +1,8 @@
 import express, { urlencoded } from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import { config, corsOptions, cookieOptions } from './configAndConstants';
-import { globalErrorHandler } from './middlewares/error.middleware';
+import { config, corsOptions, cookieOptions } from './configAndConstants.js';
+import { globalErrorHandler } from './middlewares/error.middleware.js';
 
 const app = express();
 

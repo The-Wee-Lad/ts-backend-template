@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { verifyToken } from '../middlewares/auth.middleware';
+import { verifyToken } from '../middlewares/auth.middleware.js';
 
 const router = Router();
 import {
@@ -9,7 +9,7 @@ import {
   deleteUser,
   update,
   getCurrentUser
-} from '../controllers/user.controller';
+} from '../controllers/user.controller.js';
 
 router.route('/').post(register).put(verifyToken, update).get(verifyToken, getCurrentUser);
 router.route('/login').post(login);

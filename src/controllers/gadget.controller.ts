@@ -1,10 +1,10 @@
-import { prismaClient } from "../db";
-import { Gadgets } from "../../generated/prisma";
+import { prismaClient } from "../db/index.js";
+import { Gadgets } from "@prisma/client";
 import {
   ApiError,
   ApiResponse,
   asyncHandler,
-} from "../utils";
+} from "../utils/index.js";
 
 import {
   Request,
@@ -15,7 +15,7 @@ import {
   generateName,
   generateOtp,
   generateNumber
-} from '../utils/index'
+} from '../utils/index.js'
 
 const getGadgets = asyncHandler(async (req: Request, res: Response) => {
   const status = req.query.status as "Available" | "Deployed" | "Destroyed" | "Decommissioned" | undefined;
