@@ -11,5 +11,12 @@ app.use(cookieParser());
 app.use(express.urlencoded({ limit: '16KB', extended: true }));
 app.use(express.json({ limit: '16Kb' }));
 
+import { userRouter } from './routes/user.route.js';
+import { gadgetRouter } from './routes/gadget.route.js';
+
+
+app.use(config.BASE_API_URL + '/user', userRouter);
+app.use(config.BASE_API_URL + '/gadget', gadgetRouter);
+
 app.use(globalErrorHandler);
 export { app };

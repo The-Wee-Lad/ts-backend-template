@@ -15,6 +15,7 @@ interface Config {
   REFRESH_TOKEN_EXPIRES: string;
   PORT: number;
   NODE_ENV: 'development' | 'production' | 'staging';
+  BASE_API_URL: string
 }
 
 // --------------------------------------
@@ -31,6 +32,7 @@ const config: Config = {
   NODE_ENV:
     (process.env.NODE_ENV! as 'development' | 'production' | 'staging') ||
     'development',
+  BASE_API_URL: process.env.BASE_API_URL!
 };
 
 // --------------------------------------
@@ -89,5 +91,7 @@ const secondName: string[] = [
 
 const maxRange: number = 100,
   minRange: number = 0;
+
+
 
 export { cookieOptions, config, corsOptions, firstName, secondName };
