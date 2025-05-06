@@ -59,13 +59,35 @@ const corsOptions: CorsOptions = {
 };
 
 const firstName: string[] = [
-  'Rando', 'The', 'Barthelmew', 'Raphael The', 'Trader', 'Night', 'Silent', 'Dark', 'Clean', 'Burning', 'A'
-]
+  'Rando',
+  'The',
+  'Barthelmew',
+  'Raphael The',
+  'Trader',
+  'Night',
+  'Silent',
+  'Dark',
+  'Clean',
+  'Burning',
+  'A',
+];
 
 const secondName: string[] = [
-  'Nightwatch', 'Death', 'Stalker', 'Joe', 'Death', 'Knight', "Crawler", 'Slate', 'Red', 'Fart', 'Clover'
-]
+  'Nightwatch',
+  'Death',
+  'Stalker',
+  'Joe',
+  'Death',
+  'Knight',
+  'Crawler',
+  'Slate',
+  'Red',
+  'Fart',
+  'Clover',
+  'Nightingale',
+];
 
-const maxRange: number = 100, minRange: number = 0;
+const maxRange: number = 100,
+  minRange: number = 0;
 
 export { cookieOptions, config, corsOptions, firstName, secondName };

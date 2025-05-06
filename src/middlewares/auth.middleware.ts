@@ -26,11 +26,11 @@ const verifyToken = asyncHandler(
 
     const user = await prismaClient.user.findUnique({
       where: {
-        id: (decodedToken as JwtPayload)?.id
+        id: (decodedToken as JwtPayload)?.id,
       },
       omit: {
-        password: true
-      }
+        password: true,
+      },
     });
 
     if (!user) {
