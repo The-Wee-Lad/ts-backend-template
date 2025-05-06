@@ -10,6 +10,19 @@
 | `AUTH_008` | Refresh token invalid or expired     |
 | `AUTH_009` | Session expired                      |
 | `AUTH_010` | Token blacklisted                    |
+| `AUTH_011` | All fields are required                  |
+| `AUTH_012` | Username already in use                  |
+| `AUTH_013` | Email already in use                     |
+| `AUTH_014` | Invalid email format                     |
+| `AUTH_015` | Password does not meet security criteria |
+| `AUTH_016` | User already registered                  |
+| `AUTH_017` | Terms and conditions not accepted        |
+| `AUTH_018` | Weak password                            |
+| `AUTH_019` | Email verification required              |
+| `AUTH_020` | Invalid password            |
+| `AUTH_021` | Delete Failed, Unauthorised              |
+
+
 
 | **Code** | **Description**                                                                                                                    |
 | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
