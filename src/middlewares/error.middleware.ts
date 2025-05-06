@@ -13,12 +13,7 @@ const globalErrorHandler = async (
   res
     .status(statusCode)
     .json(new ApiResponse(statusCode, message, {}, customErrorCode));
-  console.error({
-    statusCode: statusCode,
-    message: message,
-    customErrorCode: customErrorCode,
-    stack: error.stack,
-  });
+  console.error(error);
 };
 
 export { globalErrorHandler };

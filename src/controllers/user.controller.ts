@@ -81,6 +81,7 @@ const login = asyncHandler(async (req: Request, res: Response) => {
     throw new ApiError(401, 'Wrong Password', 'AUTH_006');
 
   const { accessToken, refreshToken } = await generateTokens(user);
+  console.log("Refresh Token Length : ", refreshToken.length);
   const updatedUser = await prismaClient.user.updateManyAndReturn({
     where: {
       id: user.id,
@@ -106,7 +107,7 @@ const login = asyncHandler(async (req: Request, res: Response) => {
       new ApiResponse(200, 'User Logged in', {
         accessToken,
         refreshToken,
-        updatedUser,
+        user: updatedUser,
       })
     );
 });
@@ -141,14 +142,75 @@ const deleteUser = asyncHandler(async (req: Request, res: Response) => {
 
   const deleted = await prismaClient.user.delete({ where: { id: user.id } });
   if (!deleted) throw new ApiError(500, 'DB server error', 'DB_003');
-  res.status(200).json(new ApiResponse(200, 'User Deleted', deleted));
+  res
+    .status(200)
+    .clearCookie('accessToken')
+    .clearCookie('refreshToken')
+    .json(new ApiResponse(200, 'User Deleted', deleted));
 });
 
-const update = asyncHandler(async (req: Request, res: Response) => {});
+const update = asyncHandler(async (req: Request, res: Response) => {
+  const { name, username, email, newPassword, confirmPassword } = req.body;
+
+  let user = await prismaClient.user.findUnique({ where: { id: req.user?.id } });
+  if (!user) throw new ApiError(500, 'User Fetch failed.', 'DB_003');
+
+  let updateQuery: any = {};
+
+  if (name)
+    updateQuery.name = name;
+
+  if (!await comparePassword(user.password, confirmPassword))
+    throw new ApiError(401, "Invalid Password", "Auth_020");
+
+  const existingUser: boolean = (await prismaClient.user.findFirst({
+    where: {
+      OR: [
+        {
+          username: username,
+        },
+        {
+          email: email,
+        },
+      ],
+    },
+  }))
+    ? true
+    : false;
+  if ((username || email)) {
+    if (existingUser)
+      throw new ApiError(409, 'Username or Email already exists', 'AUTH_012');
+    if (username) updateQuery.username = username;
+    if (email) updateQuery.email = email;
+  }
+
+  if (newPassword) {
+    updateQuery.password = await hashPassword(newPassword);
+  }
+
+  let updatedUser = await prismaClient.user.update({
+    where: {
+      id: req.user?.id
+    },
+    data: updateQuery,
+    omit: {
+      password: true,
+      refreshToken: true
+    }
+  });
+
+  if (!updatedUser) throw new ApiError(500, 'DB server error', 'DB_003');
+
+  res.status(200).json(new ApiResponse(200, "User Updated", updatedUser));
+});
 
 const getCurrentUser = asyncHandler(async (req: Request, res: Response) => {
   const user = await prismaClient.user.findUnique({
     where: { id: req.user?.id },
+    omit: {
+      refreshToken: true,
+      password: true
+    }
   });
   if (!user) throw new ApiError(500, 'User Fetch failed.', 'DB_003');
   res.status(200).json(new ApiResponse(200, 'Current User Fetched.', user));

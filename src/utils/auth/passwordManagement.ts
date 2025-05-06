@@ -10,7 +10,7 @@ const comparePassword = async (
   hashPassword: string,
   password: string
 ): Promise<boolean> => {
-  const pass = await bcrypt.compare(hashPassword, password);
+  const pass = await bcrypt.compare(password, hashPassword);
   return pass;
 };
 

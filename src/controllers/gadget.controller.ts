@@ -1,5 +1,5 @@
 import { prismaClient } from '../db/index.js';
-import { Gadgets } from '@prisma/client';
+import { Gadget } from '@prisma/client';
 import { ApiError, ApiResponse, asyncHandler } from '../utils/index.js';
 
 import { Request, Response } from 'express';
@@ -13,13 +13,14 @@ const getGadgets = asyncHandler(async (req: Request, res: Response) => {
     | 'Destroyed'
     | 'Decommissioned'
     | undefined;
+
   const filter: any = {};
   if (
     status &&
     status in ['Available', 'Deployed', 'Destroyed', 'Decommissioned']
   )
     filter.status = status;
-  const result: (Gadgets & { probabilty?: string })[] =
+  const result: (Gadget & { probabilty?: string })[] =
     await prismaClient.gadgets.findMany({ where: filter });
   result.forEach((element, index) => {
     element.probabilty = `${generateNumber()}% success probability`;
