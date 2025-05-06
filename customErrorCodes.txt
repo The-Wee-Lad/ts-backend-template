@@ -19,7 +19,7 @@
 | `AUTH_017` | Terms and conditions not accepted        |
 | `AUTH_018` | Weak password                            |
 | `AUTH_019` | Email verification required              |
-| `AUTH_020` | Invalid password            |
+| `AUTH_020` | Invalid password                         |
 | `AUTH_021` | Delete Failed, Unauthorised              |
 
 
@@ -34,10 +34,4 @@
 | `DB_006` | **Foreign Key Constraint Violation** – When a foreign key constraint is violated during a database operation.                      |
 | `DB_007` | **Database Migration Failed** – When a database migration fails.                                                                   |
 | `DB_008` | **Invalid Database Query** – When the database query is malformed or invalid.                                                      |
-| `DB_009` | **Database Transaction Failed** – When a database transaction fails or is rolled back.                                             |
-| `DB_010` | **Database Lock Timeout** – When the database is locked and a query times out waiting for access.                                  |
-| `DB_011` | **Server Unavailable** – When the database server is unavailable or unreachable.                                                   |
-| `DB_012` | **Database Authentication Failed** – When authentication to the database fails.                                                    |
-| `DB_013` | **Database Connection Pool Limit Reached** – When the connection pool limit for the database is reached.                           |
-| `DB_014` | **Data Integrity Violation** – When data integrity constraints are violated (e.g., unexpected null values or mismatched types).    |
-| `DB_015` | **Data Migration In Progress** – When a data migration is ongoing, preventing other operations.                                    |
+| `DB_009` | **Can't make changes**

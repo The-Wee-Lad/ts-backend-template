@@ -3,9 +3,9 @@ import {
   ApiError,
   ApiResponse,
   generateTokens,
+  hashPassword,
+  comparePassword
 } from '../utils/index';
-
-import { hashPassword, comparePassword } from '../utils/passwordManagement';
 
 import { prismaClient } from '../db';
 import { Request, Response, NextFunction } from 'express';
@@ -13,8 +13,7 @@ import {
   RequestRegister,
   RequestLogin,
   RequestDelete,
-} from '../../types/auth/auth';
-import { access } from 'fs';
+} from '../../types/index';
 import { cookieOptions } from '../configAndConstants';
 
 const register = asyncHandler(async (req: Request, res: Response) => {

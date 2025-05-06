@@ -26,9 +26,14 @@ model User {
 }
 
 model Gadgets {
-  id     String @id @default(uuid())
-  name   String @db.VarChar(511)
-  status STATUS @default(Available)
+  id               String    @id @default(uuid())
+  name             String    @db.VarChar(511)
+  status           STATUS    @default(Available)
+  decommissonedAt  DateTime?
+  createdAt        DateTime  @default(now()) @db.Timestamp(6)
+  updatedAt        DateTime  @updatedAt @db.Timestamp(6)
+  confirmationCode Int?
+  expiresAt        DateTime?
 }
 
 // ENUMS should be in Upercase but assign. specified otherwise.
