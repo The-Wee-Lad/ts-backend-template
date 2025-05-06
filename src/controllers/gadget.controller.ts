@@ -1,5 +1,5 @@
 import { prismaClient } from '../db/index.js';
-import { Gadget } from '@prisma/client';
+import { Gadget } from '../../node_modules/.prisma/client';
 import { ApiError, ApiResponse, asyncHandler } from '../utils/index.js';
 
 import { Request, Response } from 'express';

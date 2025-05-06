@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "./node_modules/@prisma/client"
+  output   = "../node_modules/@prisma/client"
 }
 
 datasource db {
@@ -36,7 +36,7 @@ model Gadget {
   expiresAt        DateTime?
 }
 
-// ENUMS should be in Upercase but assign. specified otherwise.
+// ENUMS should be in Upercase but assignment specified otherwise.
 enum STATUS {
   Available
   Deployed
