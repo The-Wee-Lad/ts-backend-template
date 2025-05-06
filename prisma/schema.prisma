@@ -25,7 +25,7 @@ model User {
   updatedAt    DateTime @updatedAt @db.Timestamp(6)
 }
 
-model Gadgets {
+model Gadget {
   id               String    @id @default(uuid())
   name             String    @db.VarChar(511)
   status           STATUS    @default(Available)

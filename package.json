@@ -14,7 +14,8 @@
     "migrate": "prisma migrate dev",
     "migrate:deploy": "prisma migrate deploy",
     "generate": "prisma generate",
-    "write": "prettier --write ."
+    "write": "prettier --write .",
+    "kill": "taskkill /F /IM node.exe"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
