@@ -1,9 +1,7 @@
 import jwt from 'jsonwebtoken';
-import { User } from '../../generated/prisma';
-import { config } from '../configAndConstants';
-import { prismaClient } from '../db';
+import { User } from '../../../generated/prisma';
+import { config } from '../../configAndConstants';
 import ms from 'ms';
-import { ApiError } from './ApiError';
 
 const generateTokens = async (user: User) => {
   const accessToken = jwt.sign(user, config.ACCESS_TOKEN_KEY, {
