@@ -1,11 +1,3 @@
-import {
-  RequestRegister,
-  RequestDelete,
-  RequestLogin
-} from "./auth/auth";
+import { RequestRegister, RequestDelete, RequestLogin } from './auth/auth';
 
-export {
-  RequestDelete,
-  RequestRegister,
-  RequestLogin,
-}
+export { RequestDelete, RequestRegister, RequestLogin };

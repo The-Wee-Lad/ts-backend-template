@@ -17,5 +17,5 @@ export {
   generateOtp,
   generateTokens,
   hashPassword,
-  comparePassword
+  comparePassword,
 };

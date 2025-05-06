@@ -4,7 +4,7 @@ import {
   ApiResponse,
   generateTokens,
   hashPassword,
-  comparePassword
+  comparePassword,
 } from '../utils/index.js';
 
 import { prismaClient } from '../db/index.js';
@@ -144,23 +144,14 @@ const deleteUser = asyncHandler(async (req: Request, res: Response) => {
   res.status(200).json(new ApiResponse(200, 'User Deleted', deleted));
 });
 
-const update = asyncHandler(async (req: Request, res: Response) => {
-
-});
+const update = asyncHandler(async (req: Request, res: Response) => {});
 
 const getCurrentUser = asyncHandler(async (req: Request, res: Response) => {
-  const user = await prismaClient.user.findUnique({ where: { id: req.user?.id } });
-  if (!user)
-    throw new ApiError(500, "User Fetch failed.", "DB_003");
-  res.status(200).json(new ApiResponse(200, "Current User Fetched.", user));
+  const user = await prismaClient.user.findUnique({
+    where: { id: req.user?.id },
+  });
+  if (!user) throw new ApiError(500, 'User Fetch failed.', 'DB_003');
+  res.status(200).json(new ApiResponse(200, 'Current User Fetched.', user));
 });
 
-
-export {
-  register,
-  login,
-  logout,
-  deleteUser,
-  update,
-  getCurrentUser
-}
+export { register, login, logout, deleteUser, update, getCurrentUser };
