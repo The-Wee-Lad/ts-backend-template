@@ -81,7 +81,7 @@ const login = asyncHandler(async (req: Request, res: Response) => {
     throw new ApiError(401, 'Wrong Password', 'AUTH_006');
 
   const { accessToken, refreshToken } = await generateTokens(user);
-  console.log("Refresh Token Length : ", refreshToken.length);
+  console.log('Refresh Token Length : ', refreshToken.length);
   const updatedUser = await prismaClient.user.updateManyAndReturn({
     where: {
       id: user.id,
@@ -152,16 +152,17 @@ const deleteUser = asyncHandler(async (req: Request, res: Response) => {
 const update = asyncHandler(async (req: Request, res: Response) => {
   const { name, username, email, newPassword, confirmPassword } = req.body;
 
-  let user = await prismaClient.user.findUnique({ where: { id: req.user?.id } });
+  let user = await prismaClient.user.findUnique({
+    where: { id: req.user?.id },
+  });
   if (!user) throw new ApiError(500, 'User Fetch failed.', 'DB_003');
 
   let updateQuery: any = {};
 
-  if (name)
-    updateQuery.name = name;
+  if (name) updateQuery.name = name;
 
-  if (!await comparePassword(user.password, confirmPassword))
-    throw new ApiError(401, "Invalid Password", "Auth_020");
+  if (!(await comparePassword(user.password, confirmPassword)))
+    throw new ApiError(401, 'Invalid Password', 'Auth_020');
 
   const existingUser: boolean = (await prismaClient.user.findFirst({
     where: {
@@ -177,7 +178,7 @@ const update = asyncHandler(async (req: Request, res: Response) => {
   }))
     ? true
     : false;
-  if ((username || email)) {
+  if (username || email) {
     if (existingUser)
       throw new ApiError(409, 'Username or Email already exists', 'AUTH_012');
     if (username) updateQuery.username = username;
@@ -190,18 +191,18 @@ const update = asyncHandler(async (req: Request, res: Response) => {
 
   let updatedUser = await prismaClient.user.update({
     where: {
-      id: req.user?.id
+      id: req.user?.id,
     },
     data: updateQuery,
     omit: {
       password: true,
-      refreshToken: true
-    }
+      refreshToken: true,
+    },
   });
 
   if (!updatedUser) throw new ApiError(500, 'DB server error', 'DB_003');
 
-  res.status(200).json(new ApiResponse(200, "User Updated", updatedUser));
+  res.status(200).json(new ApiResponse(200, 'User Updated', updatedUser));
 });
 
 const getCurrentUser = asyncHandler(async (req: Request, res: Response) => {
@@ -209,8 +210,8 @@ const getCurrentUser = asyncHandler(async (req: Request, res: Response) => {
     where: { id: req.user?.id },
     omit: {
       refreshToken: true,
-      password: true
-    }
+      password: true,
+    },
   });
   if (!user) throw new ApiError(500, 'User Fetch failed.', 'DB_003');
   res.status(200).json(new ApiResponse(200, 'Current User Fetched.', user));

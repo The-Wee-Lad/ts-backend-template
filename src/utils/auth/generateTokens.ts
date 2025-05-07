@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { User } from '@prisma/client';
+import { User } from '../../../generated/client/index.js';
 import { config } from '../../configAndConstants.js';
 import ms from 'ms';
 
