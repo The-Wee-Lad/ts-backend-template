@@ -10,10 +10,14 @@ console.log(__dirname);
 const source = path.resolve(__dirname, '../generated');
 const destination = path.resolve(__dirname, '../dist/generated');
 
-// Log to verify
 console.log('Copying from:', source);
 console.log('Copying to:', destination);
 
-// Synchronously copy the folder
-fs.copySync(source, destination);
-console.log('✅ Copy complete');
+try {
+  fs.copySync(source, destination);
+  console.log('Generated file Copy complete');
+} catch (error) {
+  console.log('Generated file Copy failed ');
+  process.exit(-1);
+}
+
